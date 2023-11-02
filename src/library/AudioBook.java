@@ -42,20 +42,28 @@ public class AudioBook extends Book{
     public int getPlayTime() {
         return playTime;
     }
+
     @Override
     public boolean equals(Object o) {
-        if(o instanceof AudioBook){
-            if(this.getName().equals(((AudioBook)o).getName()) && this.getAuthor().equals(((AudioBook) o).getAuthor())
-                    && Objects.equals(this.getIsbn(), ((AudioBook) o).getIsbn()))
-                return true;
-            else return false;
-        } else return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        AudioBook audioBook = (AudioBook) o;
+        return Objects.equals(this.getName(), audioBook.getName()) && Objects.equals(this.getAuthor(),
+                audioBook.getAuthor()) && Objects.equals(this.getIsbn(), audioBook.getIsbn());
     }
+
     @Override
     public int hashCode() {
-        //name과 score가 같으면 동일한 해쉬코드 리턴 받게해줌
-        //return Objects.hash(name, score);
-        return this.getName().hashCode() + this.getAuthor().hashCode() + this.getIsbn().hashCode() + 2;
-        //상위에서 name과 score 같은 값이면 같은 해쉭밧을 그냥 리턴해버림
+        return Objects.hash(super.hashCode(), playTime);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+
+                ", '" + fileSize + '\'' +
+                ", '" + language + '\'' +
+                ", '" + playTime +
+                '\'';
     }
 }

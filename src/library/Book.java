@@ -61,43 +61,32 @@ public class Book {
     public void setPublishedDate(LocalDate publishedDate) {
         this.publishedDate = publishedDate;
     }
-
     @Override
     public boolean equals(Object o) {
-            if (o instanceof Book) {
-                if(this.name.equals(((Book)o).getName()) && this.author.equals(((Book) o).getAuthor())
-                        && Objects.equals(this.getIsbn(), ((Book) o).getIsbn()))
-                    return true;
-                else return false;
-            } else return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(this.name, book.name) && Objects.equals(this.author, book.author) && Objects.equals(this.isbn, book.isbn);
     }
-//       if(o instanceof AudioBook){
-//           if(this.name.equals(((AudioBook)o).getName()) && this.author.equals(((AudioBook) o).getAuthor())
-//                   && Objects.equals(this.getIsbn(), ((AudioBook) o).getIsbn()))
-//               return true;
-//           else return false;
-//       } else if (o instanceof EBook) {
-//           if(this.name.equals(((EBook)o).getName()) && this.author.equals(((EBook) o).getAuthor())
-//                   && Objects.equals(this.getIsbn(), ((EBook) o).getIsbn()))
-//               return true;
-//           else return false;
-//       } else if (o instanceof Book) {
-//           if(this.name.equals(((Book)o).getName()) && this.author.equals(((Book) o).getAuthor())
-//                   && Objects.equals(this.getIsbn(), ((Book) o).getIsbn()))
-//               return true;
-//           else return false;
-//       } else return false;
-
     @Override
     public int hashCode() {
-        //name과 score가 같으면 동일한 해쉬코드 리턴 받게해줌
-        //return Objects.hash(name, score);
-        return this.name.hashCode() + this.author.hashCode() + this.isbn.hashCode();
-        //상위에서 name과 score 같은 값이면 같은 해쉭밧을 그냥 리턴해버림
+        return Objects.hash(this.name, this.author, this.isbn);
     }
 
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(name, author, isbn);
-//    }
+    @Override
+    public String toString() {
+        return  id +
+                ", '" + name + '\'' +
+                ", " + author + '\'' +
+                ", " + isbn +
+                ", " + publishedDate +
+                '\'';
+    }
+    public int compareBookName(Book o1) {
+        return this.getName().compareToIgnoreCase(o1.getName());
+    }
+    public int compareBookDate(Book o1){
+        return this.getPublishedDate().compareTo(o1.getPublishedDate());
+    }
+
 }

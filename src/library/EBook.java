@@ -22,20 +22,26 @@ public class EBook extends Book{
     public String getFileSize() {
         return fileSize;
     }
+
     @Override
     public boolean equals(Object o) {
-        if (o instanceof EBook) {
-            if(this.getName().equals(((EBook)o).getName()) && this.getAuthor().equals(((EBook) o).getAuthor())
-                    && Objects.equals(this.getIsbn(), ((EBook) o).getIsbn()))
-                return true;
-            else return false;
-        } else return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        EBook eBook = (EBook) o;
+        return Objects.equals(this.getName(), eBook.getName()) && Objects.equals(this.getAuthor(),
+                eBook.getAuthor()) && Objects.equals(this.getIsbn(), eBook.getIsbn());
     }
+
     @Override
     public int hashCode() {
-        //name과 score가 같으면 동일한 해쉬코드 리턴 받게해줌
-        //return Objects.hash(name, score);
-        return this.getName().hashCode() + this.getAuthor().hashCode() + this.getIsbn().hashCode() + 1;
-        //상위에서 name과 score 같은 값이면 같은 해쉭밧을 그냥 리턴해버림
+        return Objects.hash(super.hashCode(), fileSize);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                ", '" + fileSize +
+                '\'';
     }
 }
