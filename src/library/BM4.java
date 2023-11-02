@@ -83,16 +83,11 @@ public class BM4 extends BookManager{
     public void addBook() {
         System.out.println("■■■■■■■■■■■ 도서 등록 ■■■■■■■■■■■");
         form = getInt("어떤 책을 등록하시겠습니까?(숫자입력) 1. Book 2. EBook 3. AudioBook >> ");
-        if(form >= 4 || form <= 0) {
+        if(form >= 4) {
             System.out.println("잘못된 숫자 입력하였습니다!!! :( ");
             return;
         }
         long id = getLong("(1) 도서번호를 입력해주세요.(유일한 번호) >> ");
-        if(id < 0) {
-            System.out.println("id는 양수로만 받겠습니다!!!! ");
-            id = id * (-1);
-            System.out.println("id 값 양수 변경: " + id);
-        }
         if (bookList.containsKey(id)) {
             System.out.println("이미 동일한 도서 번호가 존재합니다.");
             return;
@@ -105,11 +100,6 @@ public class BM4 extends BookManager{
         System.out.print("(3) 저자명을 입력해주세요. >> ");
         String author = sc.nextLine();
         long isbn = getLong("(4) isbn을 입력해주세요. >> ");
-        if(isbn < 0) {
-            System.out.println("isbn은 양수로만 받겠습니다!!!! ");
-            isbn = isbn * (-1);
-            System.out.println("isbn 값 양수 변경: " + isbn);
-        }
         LocalDate Date = getDate("(5) 출간일을 입력해주세요.(YYYY-MM-DD형식) >> ");
         if(form >= 2) {
             System.out.print("(6) 파일 사이즈를 입력해주세요. >> ");
@@ -118,11 +108,6 @@ public class BM4 extends BookManager{
                 System.out.print("(7) 언어를 입력해주세요. >> ");
                 language = sc.nextLine();
                 time = getInt("(8) 오디오북 길이를 입력해주세요.(숫자) >> ");
-                if(time < 0){
-                    System.out.println("시간은 양수로만 받겠습니다!!! ");
-                    time = time * (-1);
-                    System.out.println("시간 값 양수 변경: " + time);
-                }
             }
         }
         Book book = createBook(id,name, author, isbn,Date, fileSize, language, time, form);
@@ -146,11 +131,6 @@ public class BM4 extends BookManager{
             System.out.print("저자 >> ");
             String author = sc.nextLine();
             long isbn = getLong("isbn >> ");
-            if(isbn < 0) {
-                System.out.println("isbn은 양수로만 받겠습니다!!!! ");
-                isbn = isbn * (-1);
-                System.out.println("isbn 값 양수 변경: " + isbn);
-            }
             LocalDate Date = getDate("출판일(YYYY-MM-DD) >> ");
             if (bookList.get(id) instanceof EBook) {
                 form = 2;
@@ -163,11 +143,6 @@ public class BM4 extends BookManager{
                 System.out.print("언어 >> ");
                 language = sc.nextLine();
                 time = getInt("재생시간(숫자) >> ");
-                if(time < 0){
-                    System.out.println("시간은 양수로만 받겠습니다!!! ");
-                    time = time * (-1);
-                    System.out.println("시간 값 양수 변경: " + time);
-                }
             }
             Book book = createBook(id,name, author, isbn,Date, fileSize, language, time, form);
             if(book != null) {
@@ -214,6 +189,10 @@ public class BM4 extends BookManager{
             System.out.print(prompt);
             String input = sc.nextLine();
             int value = Integer.parseInt(input);
+            if(value < 0){
+                System.out.println("양수값으로 입력 부탁드립니다!!!");
+                return getInt(prompt);
+            }
             return value;
         } catch (Exception e) {
             System.out.println("잘못된 값을 입력 하셨습니다. 정수로 다시 입력 하세요 ㅠㅠ");
@@ -236,6 +215,10 @@ public class BM4 extends BookManager{
             System.out.print(prompt);
             String input = sc.nextLine();
             long value = Long.parseLong(input);
+            if(value < 0) {
+                System.out.println("양수값으로 입력 부탁드립니다!!!");
+                return getLong(prompt);
+            }
             return value;
         } catch (Exception e) {
             System.out.println("잘못된 값을 입력 하셨습니다. 정수로 다시 입력 하세요 ㅠㅠ");
