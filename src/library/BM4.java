@@ -110,11 +110,8 @@ public class BM4 extends BookManager{
                 time = getInt("(8) 오디오북 길이를 입력해주세요.(숫자) >> ");
             }
         }
-        Book book = createBook(id,name, author, isbn,Date, fileSize, language, time, form);
-        if(book != null) {
-            bookList.put(id, book);
-            System.out.println("--- 도서 [" + book.getName() + "] 등록이 완료되었습니다. ---");
-        } else System.out.println("이미 동일한 도서가 존재합니다.");
+        if(createBook(id,name, author, isbn,Date, fileSize, language, time, form))
+            System.out.println("--- 도서 [" + bookList.get(id).getName() + "] 등록이 완료되었습니다. ---");
     }
     @Override
     public void updateBook() {
@@ -144,11 +141,8 @@ public class BM4 extends BookManager{
                 language = sc.nextLine();
                 time = getInt("재생시간(숫자) >> ");
             }
-            Book book = createBook(id,name, author, isbn,Date, fileSize, language, time, form);
-            if(book != null) {
-                bookList.put(id, book);
+            if(createBook(id,name, author, isbn,Date, fileSize, language, time, form))
                 System.out.println("수정이 완료되었습니다.");
-            } else System.out.println("이미 동일한 도서가 존재합니다.");
         }else System.out.println("해당 도서가 존재하지 않습니다!!! ");
     }
     public void removeBook() {
@@ -159,30 +153,37 @@ public class BM4 extends BookManager{
             System.out.println("삭제가 완료되었습니다.");
         } else System.out.println("해당 도서가 존재하지 않습니다.");
     }
-    public Book createBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize,
+    public boolean createBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize,
                            String language, int playTime, int type){
-        Book b;
+        Book b = null;
         switch (type){
             case 1:
                 b = new Book(id, name, author, isbn, publishedDate);
-                if (!bookList.containsValue(b))
-                    return b;
+                if (!bookList.containsValue(b)) {
+                    bookList.put(id, b);
+                    return true;
+                }
                 break;
             case 2:
                 b = new EBook(id, name, author, isbn, publishedDate, fileSize);
-                if (!bookList.containsValue(b))
-                    return b;
+                if (!bookList.containsValue(b)) {
+                    bookList.put(id, b);
+                    return true;
+                }
                 break;
             case 3:
                 b = new AudioBook(id, name, author, isbn, publishedDate, fileSize, language, playTime);
-                if (!bookList.containsValue(b))
-                    return b;
+                if (!bookList.containsValue(b)) {
+                    bookList.put(id, b);
+                    return true;
+                }
                 break;
             default:
-                return null;
+                break;
         }
         duplicateList.add(b);
-        return null;
+        System.out.println("이미 동일한 도서가 존재합니다.");
+        return false;
     }
     public static int getInt(String prompt) {
         try {

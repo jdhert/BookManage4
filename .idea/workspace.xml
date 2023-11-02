@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83434da2-48f8-47e6-a925-998c8759b2b5" name="Changes" comment="Final version">
+    <list default="true" id="83434da2-48f8-47e6-a925-998c8759b2b5" name="Changes" comment="Final version!">
       <change beforePath="$PROJECT_DIR$/src/library/BM4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM4.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,11 +51,20 @@
       <option name="project" value="LOCAL" />
       <updated>1698945066061</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Final version!">
+      <option name="closed" value="true" />
+      <created>1698946083983</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698946083983</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Final version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Final version" />
+    <MESSAGE value="Final version!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final version!" />
   </component>
 </project>
