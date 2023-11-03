@@ -30,8 +30,8 @@ public class BM3 extends BookManager{
             System.out.println("(4) 도서 삭제");
             System.out.println("(5) 도서 이름으로 검색");
             System.out.println("(6) 도서 출판일로 검색");
-            System.out.println("(7) 도서 제목 사전순 정렬");
-            System.out.println("(8) 도서 출판일 순으로 정렬");
+            System.out.println("(7) 도서 제목 사전순 조회");
+            System.out.println("(8) 도서 출판일 순으로 조회");
             System.out.println("(q) 프로그램 종료");
             System.out.print("선택 >> ");
             String userInput = sc.nextLine();
