@@ -4,14 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83434da2-48f8-47e6-a925-998c8759b2b5" name="Changes" comment="Improved version!!">
+    <list default="true" id="83434da2-48f8-47e6-a925-998c8759b2b5" name="Changes" comment="Improved version!!!!!!">
+      <change afterPath="$PROJECT_DIR$/src/library/ArrayListBM.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library/BM5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library/BookRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/library/HashMapBM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BM3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM3.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,6 +49,11 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="library" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -47,7 +63,7 @@
       <option name="presentableId" value="Default" />
       <updated>1698915170759</updated>
       <workItem from="1698915171776" duration="1000" />
-      <workItem from="1698969535330" duration="10100000" />
+      <workItem from="1698969535330" duration="19072000" />
     </task>
     <task id="LOCAL-00001" summary="Final version">
       <option name="closed" value="true" />
@@ -81,7 +97,31 @@
       <option name="project" value="LOCAL" />
       <updated>1698974210142</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Improved version!!!">
+      <option name="closed" value="true" />
+      <created>1698986096888</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698986096888</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Improved version!!!!!">
+      <option name="closed" value="true" />
+      <created>1698989012582</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698989012582</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Improved version!!!!!!">
+      <option name="closed" value="true" />
+      <created>1698997999359</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698997999359</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -92,6 +132,9 @@
     <MESSAGE value="Final version!" />
     <MESSAGE value="Improved version!" />
     <MESSAGE value="Improved version!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved version!!" />
+    <MESSAGE value="Improved version!!!" />
+    <MESSAGE value="Improved version!!!!!" />
+    <MESSAGE value="Improved version!!!!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved version!!!!!!" />
   </component>
 </project>
