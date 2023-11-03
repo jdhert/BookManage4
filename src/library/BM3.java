@@ -387,28 +387,16 @@ public class BM3 extends BookManager{
     public void dictionaryPrint(){
         System.out.println("■■■■■■■■ 도서 사전순으로 정렬 ■■■■■■■■");
         duplication = (ArrayList<Book>) bookList.clone();
-        Collections.sort(duplication,new bookNameComparator());
+        Collections.sort(duplication, (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         checks = false;
         printAllBook();
     }
     public void dateByPrint(){
         System.out.println("■■■■■■■■ 도서 출판일 순으로 정렬 ■■■■■■■■");
         duplication = (ArrayList<Book>) bookList.clone();
-        Collections.sort(duplication, new bookDateComparator());
+        Collections.sort(duplication, Comparator.comparing(Book::getPublishedDate));
         checks = false;
         printAllBook();
-    }
-    class bookNameComparator implements Comparator<Book>{
-        @Override
-        public int compare(Book o1, Book o2) {
-            return o1.getName().compareToIgnoreCase(o2.getName());
-        }
-    }
-    class bookDateComparator implements  Comparator<Book>{
-        @Override
-        public int compare(Book o1, Book o2) {
-            return o1.getPublishedDate().compareTo(o2.getPublishedDate());
-        }
     }
 }
 
