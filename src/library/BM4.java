@@ -110,7 +110,7 @@ public class BM4 extends BookManager{
                 time = getInt("(8) 오디오북 길이를 입력해주세요.(숫자) >> ");
             }
         }
-        if(createBook(id,name, author, isbn,Date, fileSize, language, time, form))
+        if(createBook(id,name, author, isbn,Date, fileSize, language, time))
             System.out.println("--- 도서 [" + bookList.get(id).getName() + "] 등록이 완료되었습니다. ---");
     }
     @Override
@@ -141,7 +141,7 @@ public class BM4 extends BookManager{
                 language = sc.nextLine();
                 time = getInt("재생시간(숫자) >> ");
             }
-            if(createBook(id,name, author, isbn,Date, fileSize, language, time, form))
+            if(createBook(id,name, author, isbn,Date, fileSize, language, time))
                 System.out.println("수정이 완료되었습니다.");
         }else System.out.println("해당 도서가 존재하지 않습니다!!! ");
     }
@@ -154,9 +154,9 @@ public class BM4 extends BookManager{
         } else System.out.println("해당 도서가 존재하지 않습니다.");
     }
     public boolean createBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize,
-                           String language, int playTime, int type){
+                           String language, int playTime){
         Book b = null;
-        switch (type){
+        switch (form){
             case 1:
                 b = new Book(id, name, author, isbn, publishedDate);
                 if (!bookList.containsValue(b)) {
