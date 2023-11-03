@@ -382,19 +382,18 @@ public class BM3 extends BookManager{
         } if(check)
             System.out.println("해당 도서는 존재하지 않습니다. ");
     }
-
     private static boolean checks = true;
     public void dictionaryPrint(){
         System.out.println("■■■■■■■■ 도서 사전순으로 정렬 ■■■■■■■■");
-        duplication = (ArrayList<Book>) bookList.clone();
-        Collections.sort(duplication, (o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+        duplication = (ArrayList<Book>)bookList.clone();
+        duplication.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
         checks = false;
         printAllBook();
     }
     public void dateByPrint(){
         System.out.println("■■■■■■■■ 도서 출판일 순으로 정렬 ■■■■■■■■");
-        duplication = (ArrayList<Book>) bookList.clone();
-        Collections.sort(duplication, Comparator.comparing(Book::getPublishedDate));
+        duplication = (ArrayList<Book>)bookList.clone();
+        duplication.sort(Comparator.comparing(Book::getPublishedDate));
         checks = false;
         printAllBook();
     }
