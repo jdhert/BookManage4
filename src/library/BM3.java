@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 public class BM3 extends BookManager{
     private static ArrayList<Book> bookList = new ArrayList<>();
+
+    private static ArrayList<Book> duplication = null;
     private static Scanner sc = new Scanner(System.in);
     @Override
     void init() {
@@ -74,32 +76,62 @@ public class BM3 extends BookManager{
     }
     @Override
     public void printAllBook() {
-        System.out.println("■■■■■■■■ 도서 목록 조회 ■■■■■■■■");
-        for (Book book : bookList) {
-            System.out.print("[");
-            System.out.print(book.getId());
-            System.out.print(", ");
-            System.out.print(book.getName());
-            System.out.print(", ");
-            System.out.print(book.getAuthor());
-            System.out.print(", ");
-            System.out.print(book.getIsbn());
-            System.out.print(", ");
-            System.out.print(book.getPublishedDate());
-            if(book instanceof EBook) {
+        if(checks) {
+            System.out.println("■■■■■■■■ 도서 목록 조회 ■■■■■■■■");
+            for (Book book : bookList) {
+                System.out.print("[");
+                System.out.print(book.getId());
                 System.out.print(", ");
-                System.out.print(((EBook) book).getFileSize());
-                System.out.print("]");
-            } else if (book instanceof AudioBook) {
+                System.out.print(book.getName());
                 System.out.print(", ");
-                System.out.print(((AudioBook) book).getFileSize());
+                System.out.print(book.getAuthor());
                 System.out.print(", ");
-                System.out.print(((AudioBook) book).getLanguage());
+                System.out.print(book.getIsbn());
                 System.out.print(", ");
-                System.out.print(((AudioBook) book).getPlayTime());
-                System.out.print("]");
-            } else System.out.print("]");
-            System.out.println();
+                System.out.print(book.getPublishedDate());
+                if (book instanceof EBook) {
+                    System.out.print(", ");
+                    System.out.print(((EBook) book).getFileSize());
+                    System.out.print("]");
+                } else if (book instanceof AudioBook) {
+                    System.out.print(", ");
+                    System.out.print(((AudioBook) book).getFileSize());
+                    System.out.print(", ");
+                    System.out.print(((AudioBook) book).getLanguage());
+                    System.out.print(", ");
+                    System.out.print(((AudioBook) book).getPlayTime());
+                    System.out.print("]");
+                } else System.out.print("]");
+                System.out.println();
+            }
+        } else {
+            System.out.println("■■■■■■■■ 재정렬된 도서 조회 ■■■■■■■■");
+            for (Book book : duplication) {
+                System.out.print("[");
+                System.out.print(book.getId());
+                System.out.print(", ");
+                System.out.print(book.getName());
+                System.out.print(", ");
+                System.out.print(book.getAuthor());
+                System.out.print(", ");
+                System.out.print(book.getIsbn());
+                System.out.print(", ");
+                System.out.print(book.getPublishedDate());
+                if (book instanceof EBook) {
+                    System.out.print(", ");
+                    System.out.print(((EBook) book).getFileSize());
+                    System.out.print("]");
+                } else if (book instanceof AudioBook) {
+                    System.out.print(", ");
+                    System.out.print(((AudioBook) book).getFileSize());
+                    System.out.print(", ");
+                    System.out.print(((AudioBook) book).getLanguage());
+                    System.out.print(", ");
+                    System.out.print(((AudioBook) book).getPlayTime());
+                    System.out.print("]");
+                } else System.out.print("]");
+                System.out.println();
+            } checks = true;
         }
     }
     public void addBook() {
@@ -350,14 +382,20 @@ public class BM3 extends BookManager{
         } if(check)
             System.out.println("해당 도서는 존재하지 않습니다. ");
     }
+
+    private static boolean checks = true;
     public void dictionaryPrint(){
         System.out.println("■■■■■■■■ 도서 사전순으로 정렬 ■■■■■■■■");
-        Collections.sort(bookList,new bookNameComparator());
+        duplication = (ArrayList<Book>) bookList.clone();
+        Collections.sort(duplication,new bookNameComparator());
+        checks = false;
         printAllBook();
     }
     public void dateByPrint(){
         System.out.println("■■■■■■■■ 도서 출판일 순으로 정렬 ■■■■■■■■");
-        Collections.sort(bookList, new bookDateComparator());
+        duplication = (ArrayList<Book>) bookList.clone();
+        Collections.sort(duplication, new bookDateComparator());
+        checks = false;
         printAllBook();
     }
     class bookNameComparator implements Comparator<Book>{
