@@ -348,7 +348,7 @@ public class BM3 extends BookManager{
         System.out.println("■■■■■■■■ 도서 출간일로 조회 ■■■■■■■■");
         boolean check = true;
         for (Book b : bookList){
-            if(b.getPublishedDate().compareTo(bookTime1) >= 0 && b.getPublishedDate().compareTo(bookTime2) <= 0){
+            if(!b.getPublishedDate().isBefore(bookTime1) && !b.getPublishedDate().isAfter(bookTime2)){
                 System.out.print("[");
                 System.out.print(b.getId());
                 System.out.print(", ");

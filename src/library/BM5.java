@@ -7,20 +7,18 @@ import java.util.List;
 import java.util.Scanner;
 
 public class BM5 extends BookManager{
-
     private static BookRepository bookListTest = new HashMapBM();
-    private static HashMap<Long, Book> bookList = new HashMap<>();
     private static ArrayList<Book> duplicateList = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
     private static int form;
     @Override
     void init() {
         bookListTest.addBook(1L,new Book(1L, "돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331796"),
-                LocalDate.parse("2020-06-15")));
+                LocalDate.parse("2020-06-15")), true);
         bookListTest.addBook(2L, new EBook(2L,"K 배터리 레볼루션", "박순혁", Long.parseLong("9791191521221"), LocalDate.parse("2023-02-20"),
-                "300MB"));
+                "300MB"), true);
         bookListTest.addBook(3L, new AudioBook(3L, "위기의 역사", "오건영", Long.parseLong("9791169850360"), LocalDate.parse("2023-07-19"),
-                "562MB", "한국어", 120));
+                "562MB", "한국어", 120), true);
     }
     @Override
     void interactWithUser() {
@@ -83,7 +81,7 @@ public class BM5 extends BookManager{
     @Override
     public void printAllBook() {
         System.out.println("■■■■■■■■ 도서 목록 조회 ■■■■■■■■");
-        bookList.forEach((key, b) -> System.out.println(b.toString()));
+        bookListTest.PrintBook();
     }
     public void addBook() {
         System.out.println("■■■■■■■■■■■ 도서 등록 ■■■■■■■■■■■");
@@ -93,7 +91,7 @@ public class BM5 extends BookManager{
             return;
         }
         long id = getLong("(1) 도서번호를 입력해주세요.(유일한 번호) >> ");
-        if (bookList.containsKey(id)) {
+        if (bookListTest.getBook(id) != null) {
             System.out.println("이미 동일한 도서 번호가 존재합니다.");
             return;
         }
@@ -115,14 +113,14 @@ public class BM5 extends BookManager{
                 time = getInt("(8) 오디오북 길이를 입력해주세요.(숫자) >> ");
             }
         }
-        if(createBook(id,name, author, isbn,Date, fileSize, language, time))
-            System.out.println("--- 도서 [" + bookList.get(id).getName() + "] 등록이 완료되었습니다. ---");
+        if(createBook(id,name, author, isbn,Date, fileSize, language, time, true))
+            System.out.println("--- 도서 [" + name + "] 등록이 완료되었습니다. ---");
     }
     @Override
     public void updateBook() {
         System.out.println("수정 메서드 실행");
         long id = getLong("수정하고자 하는 도서번호를 입력하세요 >> ");
-        if (bookList.containsKey(id)) {
+        if (bookListTest.getBook(id) != null) {
             String fileSize = "";
             String language = "";
             int time=0;
@@ -134,11 +132,11 @@ public class BM5 extends BookManager{
             String author = sc.nextLine();
             long isbn = getLong("isbn >> ");
             LocalDate Date = getDate("출판일(YYYY-MM-DD) >> ");
-            if (bookList.get(id) instanceof EBook) {
+            if (bookListTest.getBook(id) instanceof EBook) {
                 form = 2;
                 System.out.print("파일사이즈 >> ");
                 fileSize = sc.nextLine();
-            }else if (bookList.get(id) instanceof AudioBook) {
+            }else if (bookListTest.getBook(id)instanceof AudioBook) {
                 form = 3;
                 System.out.print("파일사이즈 >> ");
                 fileSize = sc.nextLine();
@@ -146,42 +144,33 @@ public class BM5 extends BookManager{
                 language = sc.nextLine();
                 time = getInt("재생시간(숫자) >> ");
             }
-            if(createBook(id,name, author, isbn,Date, fileSize, language, time))
+            if(createBook(id,name, author, isbn,Date, fileSize, language, time, false))
                 System.out.println("수정이 완료되었습니다.");
         }else System.out.println("해당 도서가 존재하지 않습니다!!! ");
     }
     public void removeBook() {
         System.out.println("■■■■■■■■■■■ 도서 삭제 ■■■■■■■■■■■");
         long id = getLong("삭제하고자 하는 도서의 도서번호를 입력하세요 >> ");
-        if(bookList.get(id) != null) {
-            bookList.remove(id);
-            System.out.println("삭제가 완료되었습니다.");
-        } else System.out.println("해당 도서가 존재하지 않습니다.");
+        bookListTest.removeBook(id);
     }
     public boolean createBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize,
-                           String language, int playTime){
+                           String language, int playTime, boolean checko){
         Book b = null;
         switch (form){
             case 1:
                 b = new Book(id, name, author, isbn, publishedDate);
-                if (!bookList.containsValue(b)) {
-                    bookList.put(id, b);
+                if(bookListTest.addBook(id, b, checko))
                     return true;
-                }
                 break;
             case 2:
                 b = new EBook(id, name, author, isbn, publishedDate, fileSize);
-                if (!bookList.containsValue(b)) {
-                    bookList.put(id, b);
+                if(bookListTest.addBook(id, b, checko))
                     return true;
-                }
                 break;
             case 3:
                 b = new AudioBook(id, name, author, isbn, publishedDate, fileSize, language, playTime);
-                if (!bookList.containsValue(b)) {
-                    bookList.put(id, b);
+                if(bookListTest.addBook(id, b, checko))
                     return true;
-                }
                 break;
             default:
                 break;
@@ -236,12 +225,13 @@ public class BM5 extends BookManager{
         System.out.print("도서 제목 입력 >> ");
         String bookName = (sc.nextLine()).toLowerCase();
         System.out.println("■■■■■■■■ 도서 제목으로 조회 ■■■■■■■■");
-        bookList.forEach((key, b) -> {
+        List<Book> bookList1 = bookListTest.getBooks();
+        for(Book b : bookList1){
             if(b.getName().toLowerCase().contains(bookName)){
                 System.out.println(b);
                 checks = false;
             }
-        });
+        }
         if(checks)
             System.out.println("해당 도서는 존재 하지 않습니다. ");
     }
@@ -249,28 +239,31 @@ public class BM5 extends BookManager{
         LocalDate bookTime1 = getDate("출간일 시작범위 입력 >> ");
         LocalDate bookTime2 = getDate("출간일 종료범위 입력 >> ");
         System.out.println("■■■■■■■■ 도서 출간일로 조회 ■■■■■■■■");
-        bookList.forEach((key, b) -> {
+        List<Book> bookList1 = bookListTest.getBooks();
+        for(Book b : bookList1){
             if(!b.getPublishedDate().isBefore(bookTime1) && !b.getPublishedDate().isAfter(bookTime2)){
-                    System.out.println(b);
-                    checks = false;
+                System.out.println(b);
+                checks = false;
             }
-        });
+        }
         if(checks)
             System.out.println("해당 도서는 존재 하지 않습니다. ");
     }
     public void dictionaryPrint(){
         System.out.println("■■■■■■■■ 도서 사전 순으로 조회 ■■■■■■■■");
-        List<Long> keys = new ArrayList<>(bookList.keySet());
-        keys.sort((o1, o2) -> bookList.get(o1).compareBookName(bookList.get(o2)));
-        for(Long l : keys)
-            System.out.println(bookList.get(l).toString());
+        List<Book> bookList1 = bookListTest.getBooks();
+        bookList1.sort((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
+        for (Book b: bookList1){
+            System.out.println(b.toString());
+        }
     }
     public void dateByPrint(){
         System.out.println("■■■■■■■■ 도서 출판일 순으로 조회 ■■■■■■■■");
-        List<Long> keys = new ArrayList<>(bookList.keySet());
-        keys.sort((o1, o2) -> bookList.get(o1).compareBookDate(bookList.get(o2)));
-        for(Long l : keys)
-            System.out.println(bookList.get(l).toString());
+        List<Book> bookList1 = bookListTest.getBooks();
+        bookList1.sort(Book::compareBookDate);
+        for (Book b: bookList1){
+            System.out.println(b.toString());
+        }
     }
     public void findDuplication(){
         System.out.println("■■■■■■■■ 중복 입력된 책들 조회 ■■■■■■■■");
