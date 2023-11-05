@@ -35,7 +35,7 @@ public class EBook extends Book{
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), this.getId());
+        return Objects.hash(super.hashCode(), 25);
     }
 
     @Override

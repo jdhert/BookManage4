@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class BM5 extends BookManager{
-    private static BookRepository bookListTest = new HashMapBM();
+    private static BookRepository bookListTest = new ArrayListBM();
     private static Scanner sc = new Scanner(System.in);
     private static int form;
     @Override
@@ -250,7 +250,7 @@ public class BM5 extends BookManager{
     public void dateByPrint(){
         System.out.println("■■■■■■■■ 도서 출판일 순으로 조회 ■■■■■■■■");
         List<Book> bookList1 = bookListTest.getBooks();
-        bookList1.sort(Book::compareBookDate);
+        bookList1.sort(Comparator.comparing(Book::getPublishedDate));
         for (Book b: bookList1){
             System.out.println(b.toString());
         }
