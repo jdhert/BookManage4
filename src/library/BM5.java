@@ -1,14 +1,10 @@
 package library;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class BM5 extends BookManager{
     private static BookRepository bookListTest = new HashMapBM();
-    private static ArrayList<Book> duplicateList = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
     private static int form;
     @Override
@@ -70,7 +66,7 @@ public class BM5 extends BookManager{
                     dateByPrint();
                     break;
                 case "9":
-                    findDuplication();
+                    findDuplicationList();
                     break;
                 default:
                     System.out.println("보기에 나와있는 것을 입력하세요!!! :( ");
@@ -113,8 +109,8 @@ public class BM5 extends BookManager{
                 time = getInt("(8) 오디오북 길이를 입력해주세요.(숫자) >> ");
             }
         }
-        if(createBook(id,name, author, isbn,Date, fileSize, language, time, true))
-            System.out.println("--- 도서 [" + name + "] 등록이 완료되었습니다. ---");
+        createBook(id,name, author, isbn,Date, fileSize, language, time, true);
+        System.out.println("--- 도서 [" + name + "] 등록이 완료되었습니다. ---");
     }
     @Override
     public void updateBook() {
@@ -144,8 +140,8 @@ public class BM5 extends BookManager{
                 language = sc.nextLine();
                 time = getInt("재생시간(숫자) >> ");
             }
-            if(createBook(id,name, author, isbn,Date, fileSize, language, time, false))
-                System.out.println("수정이 완료되었습니다.");
+            createBook(id,name, author, isbn,Date, fileSize, language, time, false);
+            System.out.println("수정이 완료되었습니다.");
         }else System.out.println("해당 도서가 존재하지 않습니다!!! ");
     }
     public void removeBook() {
@@ -153,31 +149,25 @@ public class BM5 extends BookManager{
         long id = getLong("삭제하고자 하는 도서의 도서번호를 입력하세요 >> ");
         bookListTest.removeBook(id);
     }
-    public boolean createBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize,
+    public void createBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize,
                            String language, int playTime, boolean checko){
-        Book b = null;
+        Book b;
         switch (form){
             case 1:
                 b = new Book(id, name, author, isbn, publishedDate);
-                if(bookListTest.addBook(id, b, checko))
-                    return true;
+                bookListTest.addBook(id, b, checko);
                 break;
             case 2:
                 b = new EBook(id, name, author, isbn, publishedDate, fileSize);
-                if(bookListTest.addBook(id, b, checko))
-                    return true;
+                bookListTest.addBook(id, b, checko);
                 break;
             case 3:
                 b = new AudioBook(id, name, author, isbn, publishedDate, fileSize, language, playTime);
-                if(bookListTest.addBook(id, b, checko))
-                    return true;
+                bookListTest.addBook(id, b, checko);
                 break;
             default:
                 break;
         }
-        duplicateList.add(b);
-        System.out.println("이미 동일한 도서가 존재합니다.");
-        return false;
     }
     public static int getInt(String prompt) {
         try {
@@ -265,11 +255,19 @@ public class BM5 extends BookManager{
             System.out.println(b.toString());
         }
     }
-    public void findDuplication(){
+    public void findDuplicationList(){
         System.out.println("■■■■■■■■ 중복 입력된 책들 조회 ■■■■■■■■");
-        System.out.println("중복 입려된 책의 수 : " + duplicateList.size());;
-        for (Book b : duplicateList)
-            System.out.println(b.toString());
+        List<Book> origin = bookListTest.getDistinct();
+        List<Book> findDup = bookListTest.getDup();
+        for (Book b : origin){
+            for(Book c : findDup){
+                if(b.equals(c)) {
+                    System.out.println(b);
+                    System.out.println(c);
+                    System.out.println();
+                }
+            }
+        }
     }
 }
 

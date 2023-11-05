@@ -77,9 +77,9 @@ public class Book {
     public String toString() {
         return  id +
                 ", '" + name + '\'' +
-                ", " + author + '\'' +
-                ", " + isbn +
-                ", " + publishedDate +
+                ", '" + author + '\'' +
+                ", '" + isbn + '\'' +
+                ", '" + publishedDate +
                 '\'';
     }
     public int compareBookName(Book o1) {

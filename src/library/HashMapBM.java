@@ -3,17 +3,20 @@ package library;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class HashMapBM implements BookRepository{
-    static final HashMap<Long, Book> bookList = new HashMap<>();
+    static private final HashMap<Long, Book> bookList = new HashMap<>();
+
+    static private final List<Book> duplicationList = new ArrayList<>();
     @Override
-    public boolean addBook(Long id, Book book, boolean check) {
-        if (!bookList.containsValue(book)) {
-            bookList.put(id, book);
-            return true;
-        } else return false;
+    public void addBook(Long id, Book book, boolean check) {
+        if(bookList.containsValue(book)) {
+            duplicationList.add(book);
+        }
+        bookList.put(id, book);
     }
 
     @Override
@@ -32,8 +35,13 @@ public class HashMapBM implements BookRepository{
     }
 
     @Override
-    public List<Book> getBooks(Predicate<Book> predicate) {
-        return null;
+    public List<Book> getDistinct() {
+        return bookList.values().stream().distinct().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> getDup() {
+        return duplicationList;
     }
 
     @Override

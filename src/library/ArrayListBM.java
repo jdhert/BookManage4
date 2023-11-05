@@ -3,29 +3,30 @@ package library;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class ArrayListBM implements BookRepository{
-    static final ArrayList<Book> bookList = new ArrayList<>();
+    static private final ArrayList<Book> bookList = new ArrayList<>();
+
+    static private final List<Book> duplicationList = new ArrayList<>();
     @Override
-    public boolean addBook(Long id, Book book, boolean check) {
-        if (!bookList.contains(book)) {
-            if(check)
+    public void addBook(Long id, Book book, boolean check) {
+            if(check) {
+                if(bookList.contains(book))
+                    duplicationList.add(book);
                 bookList.add(book);
+            }
             else {
                 Check(id);
                 bookList.set(index, book);
             }
-            return true;
-        } else return false;
     }
-
     @Override
     public void PrintBook() {
         for (Book book : bookList) {
             System.out.println(book.toString());
         }
     }
-
     @Override
     public Book getBook(Long id) {
         return Check(id);
@@ -37,8 +38,13 @@ public class ArrayListBM implements BookRepository{
     }
 
     @Override
-    public List<Book> getBooks(Predicate<Book> predicate) {
-        return null;
+    public List<Book> getDistinct() {
+        return bookList.stream().distinct().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> getDup() {
+        return duplicationList;
     }
 
     @Override
@@ -51,7 +57,6 @@ public class ArrayListBM implements BookRepository{
     }
 
     private static int index;
-
     public Book Check(long id) {
         for(int i=0; i<bookList.size(); i++){
             if(bookList.get(i).getId().equals(id)){

@@ -6,10 +6,11 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public interface BookRepository {
-    boolean addBook(Long id, Book book, boolean check);
+    void addBook(Long id, Book book, boolean check);
     void PrintBook();
     Book getBook(Long id);
     List<Book> getBooks();
-    List<Book> getBooks(Predicate<Book> predicate);
+    List<Book> getDistinct();
+    List<Book> getDup();
     void removeBook(long id);
 }

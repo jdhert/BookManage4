@@ -55,7 +55,7 @@ public class AudioBook extends Book{
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), playTime);
+        return Objects.hash(super.hashCode(), this.getId());
     }
 
     @Override
