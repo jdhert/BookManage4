@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class BM5 extends BookManager{
-    private static BookRepository bookListTest = new ArrayListBM();
+    private static BookRepository bookListTest = new HashMapBM();
     private static Scanner sc = new Scanner(System.in);
     private static int form;
     @Override
