@@ -174,7 +174,7 @@ public class BM5 extends BookManager{
             System.out.print(prompt);
             String input = sc.nextLine();
             int value = Integer.parseInt(input);
-            if(value < 0){
+            if(value <= 0){
                 System.out.println("양수값으로 입력 부탁드립니다!!!");
                 return getInt(prompt);
             }
@@ -200,7 +200,7 @@ public class BM5 extends BookManager{
             System.out.print(prompt);
             String input = sc.nextLine();
             long value = Long.parseLong(input);
-            if(value < 0) {
+            if(value <= 0) {
                 System.out.println("양수값으로 입력 부탁드립니다!!!");
                 return getLong(prompt);
             }
