@@ -48,7 +48,14 @@ public class HashMapBM implements BookRepository{
     public void removeBook(long id) {
         if(bookList.get(id) != null) {
             bookList.remove(id);
+            duplicationList.remove(Check(id));
             System.out.println("삭제가 완료되었습니다.");
         } else System.out.println("해당 도서가 존재하지 않습니다.");
+    }
+    public Book Check(long id) {
+       for (Book b : duplicationList){
+           if(b.getId().equals(id))
+               return b;
+       } return null;
     }
 }

@@ -52,6 +52,7 @@ public class ArrayListBM implements BookRepository{
         Book check = Check(id);
         if(check != null) {
             bookList.remove(check);
+            duplicationList.remove(check);
             System.out.println("삭제가 완료되었습니다.");
         } else System.out.println("해당 도서가 존재하지 않습니다.");
     }
