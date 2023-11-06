@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83434da2-48f8-47e6-a925-998c8759b2b5" name="Changes" comment="완성!!">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="83434da2-48f8-47e6-a925-998c8759b2b5" name="Changes" comment="수정 완성본!!!">
+      <change afterPath="$PROJECT_DIR$/src/library/BM6.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/library/ArrayListBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/ArrayListBM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/library/BookManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BookManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/library/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BookRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/library/Execute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Execute.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/library/HashMapBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/HashMapBM.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +86,7 @@
       <updated>1698915170759</updated>
       <workItem from="1698915171776" duration="1000" />
       <workItem from="1698969535330" duration="19072000" />
-      <workItem from="1699229042003" duration="3211000" />
+      <workItem from="1699229042003" duration="10740000" />
     </task>
     <task id="LOCAL-00001" summary="Final version">
       <option name="closed" value="true" />
@@ -165,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1699200541532</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="수정 완성본!!!">
+      <option name="closed" value="true" />
+      <created>1699232410625</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1699232410625</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -182,6 +193,7 @@
     <MESSAGE value="완성(진)" />
     <MESSAGE value="완성" />
     <MESSAGE value="완성!!" />
-    <option name="LAST_COMMIT_MESSAGE" value="완성!!" />
+    <MESSAGE value="수정 완성본!!!" />
+    <option name="LAST_COMMIT_MESSAGE" value="수정 완성본!!!" />
   </component>
 </project>

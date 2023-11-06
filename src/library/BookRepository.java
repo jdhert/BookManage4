@@ -2,6 +2,8 @@ package library;
 
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,4 +15,8 @@ public interface BookRepository {
     List<Book> getDistinct();
     List<Book> getDup();
     void removeBook(long id);
+
+    void fileSave() throws IOException;
+
+    void loadBooks() throws IOException, ClassNotFoundException;
 }

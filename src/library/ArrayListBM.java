@@ -57,6 +57,16 @@ public class ArrayListBM implements BookRepository{
         } else System.out.println("해당 도서가 존재하지 않습니다.");
     }
 
+    @Override
+    public void fileSave() {
+
+    }
+
+    @Override
+    public void loadBooks() {
+
+    }
+
     private static int index;
     public Book Check(long id) {
         for(int i=0; i<bookList.size(); i++){
