@@ -1,9 +1,10 @@
-package library;
+package library.Book;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Book {
+public class Book implements Serializable {
     private Long id;
     private String name;
     private String author;

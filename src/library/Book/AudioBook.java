@@ -1,9 +1,9 @@
-package library;
+package library.Book;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class AudioBook extends Book{
+public class AudioBook extends Book {
     private String fileSize;
     private String language;
     private int playTime;

@@ -1,4 +1,6 @@
-package library;
+package library.BM;
+
+import library.Book.Book;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,13 +12,13 @@ public class BM extends BookManager {
     private static ArrayList<Book> bookList = new ArrayList<>();
 
     @Override
-    void init() {
+    public void init() {
         bookList.add(new Book(1L, "돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331796"), LocalDate.parse("2020-06-15")));
         bookList.add(new Book(2L,"K 배터리 레볼루션", "박순혁", Long.parseLong("9791191521221"), LocalDate.parse("2023-02-20")));
         bookList.add(new Book(3L, "위기의 역사", "오건영", Long.parseLong("9791169850360"), LocalDate.parse("2023-07-19")));
     }
     @Override
-    void interactWithUser() {
+    public void interactWithUser() {
         while (true) {
             System.out.println("■■■■■■ 도서 관리 프로그램 ■■■■■■");
             System.out.println("(1) 도서 조회");

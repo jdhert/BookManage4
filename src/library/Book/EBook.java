@@ -1,9 +1,9 @@
-package library;
+package library.Book;
 
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class EBook extends Book{
+public class EBook extends Book {
     private String fileSize;
 
     public EBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize) {

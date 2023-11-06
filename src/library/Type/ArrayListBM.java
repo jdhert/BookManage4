@@ -1,20 +1,24 @@
-package library;
+package library.Type;
 
+import library.Book.Book;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ArrayListBM implements BookRepository{
+public class ArrayListBM implements BookRepository {
     static private final ArrayList<Book> bookList = new ArrayList<>();
 
     static private final List<Book> duplicationList = new ArrayList<>();
     @Override
     public void addBook(Long id, Book book, boolean check) {
             if(check) {
-                if(bookList.contains(book))
-                    duplicationList.add(book);
-                bookList.add(book);
+                if(Check(id) == null) {
+                    if (bookList.contains(book))
+                        duplicationList.add(book);
+                    bookList.add(book);
+                }
             }
             else {
                 Check(id);
@@ -55,16 +59,6 @@ public class ArrayListBM implements BookRepository{
             duplicationList.remove(check);
             System.out.println("삭제가 완료되었습니다.");
         } else System.out.println("해당 도서가 존재하지 않습니다.");
-    }
-
-    @Override
-    public void fileSave() {
-
-    }
-
-    @Override
-    public void loadBooks() {
-
     }
 
     private static int index;

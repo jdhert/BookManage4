@@ -1,18 +1,26 @@
-package library;
+package library.BM;
 
-import java.io.IOException;
+import library.Book.AudioBook;
+import library.Book.Book;
+import library.Book.EBook;
+import library.Type.ArrayListBM;
+import library.Type.BookRepository;
+import library.Type.HashMapBM;
+
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-public class BM6 extends BookManager{
+public class BM6 extends BookManager {
     private static BookRepository bookListTest = new HashMapBM();
     private static Scanner sc = new Scanner(System.in);
     private static int form;
     @Override
-    void init() throws IOException, ClassNotFoundException {
-        bookListTest.loadBooks();
+    public void init() {
         bookListTest.addBook(1L,new Book(1L, "돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331796"),
                 LocalDate.parse("2020-06-15")), true);
         bookListTest.addBook(2L, new EBook(2L,"K 배터리 레볼루션", "박순혁", Long.parseLong("9791191521221"), LocalDate.parse("2023-02-20"),
@@ -21,7 +29,11 @@ public class BM6 extends BookManager{
                 "562MB", "한국어", 120), true);
     }
     @Override
-    void interactWithUser() throws IOException {
+    public void interactWithUser() throws IOException {
+        loadBooks();
+        backUpThread bt = new backUpThread();
+        bt.setDaemon(true);
+        bt.start();
         while (true) {
             System.out.println("■■■■■■ 도서 관리 프로그램 ■■■■■■");
             System.out.println("(1) 도서 조회");
@@ -115,7 +127,7 @@ public class BM6 extends BookManager{
         }
         createBook(id,name, author, isbn,Date, fileSize, language, time, true);
         System.out.println("--- 도서 [" + name + "] 등록이 완료되었습니다. ---");
-        bookListTest.fileSave();
+        fileSave();
     }
     @Override
     public void updateBook() throws IOException {
@@ -147,14 +159,14 @@ public class BM6 extends BookManager{
             }
             createBook(id,name, author, isbn,Date, fileSize, language, time, false);
             System.out.println("수정이 완료되었습니다.");
-            bookListTest.fileSave();
+            fileSave();
         }else System.out.println("해당 도서가 존재하지 않습니다!!! ");
     }
     public void removeBook() throws IOException {
         System.out.println("■■■■■■■■■■■ 도서 삭제 ■■■■■■■■■■■");
         long id = getLong("삭제하고자 하는 도서의 도서번호를 입력하세요 >> ");
         bookListTest.removeBook(id);
-        bookListTest.fileSave();
+        fileSave();
     }
     public void createBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, String fileSize,
                            String language, int playTime, boolean checko){
@@ -276,5 +288,45 @@ public class BM6 extends BookManager{
             }
         }
     }
+    public void loadBooks() throws IOException {
+        FileInputStream is = new FileInputStream("C:/Test/books.txt");
+        try (is; ObjectInputStream ois = new ObjectInputStream(is)) {
+            while (true) {
+                Book data = (Book) ois.readObject();
+                bookListTest.addBook(data.getId(), data, true);
+            }
+        } catch (Exception ignored) {}
+    }
+    public void fileSave() throws IOException {
+        OutputStream os = new FileOutputStream("C:/Test/books.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(os);
+        List<Book> li = bookListTest.getBooks();
+        for(Book b : li){
+            try {
+                oos.writeObject(b);
+            } catch (Exception ignored){}
+        }
+        oos.flush();
+        oos.close();
+        os.close();
+    }
+
+    public static class backUpThread extends Thread {
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    Thread.sleep(10000);
+                    backUp();
+                } catch (Exception ignored) {}
+            }
+        }
+    }
+    public static void backUp() throws IOException {
+        File file = new File("C:/Test/books.txt");
+        File copy = new File("C:/Test/books2.txt");
+        Files.copy(file.toPath(), copy.toPath(), StandardCopyOption.REPLACE_EXISTING);
+    }
+
 }
 

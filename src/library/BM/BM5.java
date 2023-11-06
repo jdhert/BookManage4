@@ -1,14 +1,20 @@
-package library;
+package library.BM;
+
+import library.Book.AudioBook;
+import library.Book.Book;
+import library.Book.EBook;
+import library.Type.BookRepository;
+import library.Type.HashMapBM;
 
 import java.time.LocalDate;
 import java.util.*;
 
-public class BM5 extends BookManager{
+public class BM5 extends BookManager {
     private static BookRepository bookListTest = new HashMapBM();
     private static Scanner sc = new Scanner(System.in);
     private static int form;
     @Override
-    void init() {
+    public void init() {
         bookListTest.addBook(1L,new Book(1L, "돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331796"),
                 LocalDate.parse("2020-06-15")), true);
         bookListTest.addBook(2L, new EBook(2L,"K 배터리 레볼루션", "박순혁", Long.parseLong("9791191521221"), LocalDate.parse("2023-02-20"),
@@ -17,7 +23,7 @@ public class BM5 extends BookManager{
                 "562MB", "한국어", 120), true);
     }
     @Override
-    void interactWithUser() {
+    public void interactWithUser() {
         while (true) {
             System.out.println("■■■■■■ 도서 관리 프로그램 ■■■■■■");
             System.out.println("(1) 도서 조회");
