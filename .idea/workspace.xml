@@ -7,20 +7,7 @@
     <list default="true" id="83434da2-48f8-47e6-a925-998c8759b2b5" name="Changes" comment="수정 완성본!!!">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/ArrayListBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Type/ArrayListBM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/AudioBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Book/AudioBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BM.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BM2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BM2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BM3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BM3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BM4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BM4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BM5.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BM5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BM6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BM6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Book/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BookManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BookManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Type/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/EBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Book/EBook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/Execute.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Execute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/library/HashMapBM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/Type/HashMapBM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/library/BM/BM6.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/library/BM/BM6.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,6 +83,7 @@
       <workItem from="1698915171776" duration="1000" />
       <workItem from="1698969535330" duration="19072000" />
       <workItem from="1699229042003" duration="10740000" />
+      <workItem from="1699315268982" duration="1350000" />
     </task>
     <task id="LOCAL-00001" summary="Final version">
       <option name="closed" value="true" />

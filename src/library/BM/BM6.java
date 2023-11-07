@@ -288,17 +288,20 @@ public class BM6 extends BookManager {
             }
         }
     }
-    public void loadBooks() throws IOException {
-        FileInputStream is = new FileInputStream("C:/Test/books.txt");
-        try (is; ObjectInputStream ois = new ObjectInputStream(is)) {
-            while (true) {
-                Book data = (Book) ois.readObject();
-                bookListTest.addBook(data.getId(), data, true);
+    public void loadBooks() {
+        try {
+            FileInputStream is = new FileInputStream("C:/Temp/books.txt");
+            try (is; ObjectInputStream ois = new ObjectInputStream(is)) {
+                while (true) {
+                    Book data = (Book) ois.readObject();
+                    bookListTest.addBook(data.getId(), data, true);
+                }
+            } catch (Exception ignored) {
             }
-        } catch (Exception ignored) {}
+        } catch (Exception e) {System.out.println("파일 존재 XXXXXXX ");}
     }
     public void fileSave() throws IOException {
-        OutputStream os = new FileOutputStream("C:/Test/books.txt");
+        OutputStream os = new FileOutputStream("C:/Temp/books.txt");
         ObjectOutputStream oos = new ObjectOutputStream(os);
         List<Book> li = bookListTest.getBooks();
         for(Book b : li){
@@ -310,7 +313,6 @@ public class BM6 extends BookManager {
         oos.close();
         os.close();
     }
-
     public static class backUpThread extends Thread {
         @Override
         public void run() {
@@ -323,10 +325,9 @@ public class BM6 extends BookManager {
         }
     }
     public static void backUp() throws IOException {
-        File file = new File("C:/Test/books.txt");
-        File copy = new File("C:/Test/books2.txt");
+        File file = new File("C:/Temp/books.txt");
+        File copy = new File("C:/Temp/books2.txt");
         Files.copy(file.toPath(), copy.toPath(), StandardCopyOption.REPLACE_EXISTING);
     }
-
 }
 
